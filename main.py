@@ -7,6 +7,7 @@ DEVICE="cuda"
 
 
 def main():
+    score1,score2=[],[]
     model=BertModel(device=DEVICE).eval()
     dataset=CrowSDataset()
     log_softmax=torch.nn.LogSoftmax(dim=-1)
@@ -23,10 +24,8 @@ def main():
         sent2_log_softmax_logits=log_softmax(sent2_mask_logits)  # [N x dict_size]
         sent1_score=sent1_log_softmax_logits[seq_index,sent1_mask_id[0]].sum()  # scalar
         sent2_score=sent2_log_softmax_logits[seq_index,sent2_mask_id[0]].sum()  # scalar
-        print(sent1_score)
-        print(sent2_score)
-
-
+        score1.append(sent1_score)
+        score2.append(sent2_score)
 
 
 if __name__=="__main__":
