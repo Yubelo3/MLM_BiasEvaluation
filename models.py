@@ -1,5 +1,6 @@
 from typing import List, Tuple
 from transformers.models.bert import BertForMaskedLM, BertTokenizer
+from transformers.models.roberta import RobertaForMaskedLM, RobertaTokenizer
 import torch
 import difflib
 from copy import deepcopy
@@ -97,6 +98,24 @@ class BertModel(BaseMaskedLM):
     def forward(self,input_ids,attention_mask):
         return self.model(input_ids=input_ids,attention_mask=attention_mask).logits
 
+class RobertaModel(BaseMaskedLM):
+    def __init__(self, model_name: str = "roberta-base",device="cpu") -> None:
+        super().__init__(model_name,device)
+        self.device=device
+        self.tokenizer: RobertaTokenizer = RobertaTokenizer.from_pretrained(
+            model_name)
+        self.model: RobertaForMaskedLM = RobertaForMaskedLM.from_pretrained(
+            model_name).to(device)
+        self.other_token_ids = self.tokenizer.convert_tokens_to_ids([
+            self.tokenizer.unk_token,
+            self.tokenizer.sep_token,
+            self.tokenizer.pad_token,
+            self.tokenizer.cls_token,
+        ])
+        self.mask_token_id = self.tokenizer._convert_token_to_id(self.tokenizer.mask_token)
+    
+    def forward(self,input_ids,attention_mask):
+        return self.model(input_ids=input_ids,attention_mask=attention_mask).logits
 
 
 if __name__=="__main__":

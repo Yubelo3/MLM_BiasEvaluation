@@ -1,0 +1,11 @@
+Some weights of the model checkpoint at bert-base-uncased were not used when initializing BertForMaskedLM: ['bert.pooler.dense.bias', 'bert.pooler.dense.weight', 'cls.seq_relationship.bias', 'cls.seq_relationship.weight']
+- This IS expected if you are initializing BertForMaskedLM from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing BertForMaskedLM from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+  0%|          | 0/63 [00:00<?, ?it/s]  2%|▏         | 1/63 [00:00<00:18,  3.30it/s] 19%|█▉        | 12/63 [00:00<00:01, 36.83it/s] 37%|███▋      | 23/63 [00:00<00:00, 58.57it/s] 52%|█████▏    | 33/63 [00:00<00:00, 69.37it/s] 71%|███████▏  | 45/63 [00:00<00:00, 83.78it/s] 89%|████████▉ | 56/63 [00:00<00:00, 89.69it/s]100%|██████████| 63/63 [00:00<00:00, 70.30it/s]
+model: BertModel
+mean_token_score1: -1.630394069252336
+mean_token_score2: -3.826114252581496
+delta_token_score: 2.1957201833291604
+mean_sentence_score1: -23.394860930223995
+mean_sentence_score2: -54.90170292593131
+delta_sentence_score: 31.50684199570732
